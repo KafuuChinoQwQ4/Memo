@@ -1,56 +1,84 @@
+/* memo/styles/loginwidget.qss */
+
+/* 顶部按钮样式 */
 QPushButton#closeButton, QPushButton#settingsButton {
     border: none;
     background-color: transparent;
+    border-radius: 4px;
 }
 QPushButton#closeButton:hover, QPushButton#settingsButton:hover {
-    background-color: rgba(128, 128, 128, 0.3); /* Lighter gray background on hover */
-    border-radius: 10px;
+    background-color: rgba(128, 128, 128, 0.3);
 }
 
+/* 账号和密码输入框样式 */
 QLineEdit#accountLineEdit, QLineEdit#passwordLineEdit {
     background-color: white;
-    border: 1px solid #D3D3D3;
-    border-radius: 20px; /* Adjusted for new padding to be pill-shaped */
-    padding: 12px 50px 12px 20px; /* Enlarged input fields */
+    border: 1px solid #ccc;       /* 必须有边框 */
+    border-radius: 6px;           /* 改为6px，呈现“四个圆角”的矩形效果 */
+    padding: 8px 40px 8px 40px;   /* 上下8px，右侧40px(避让图标)，左侧40px */
     color: black;
-    font-size: 16px; /* Enlarged font */
-    qproperty-cursor: ibeam; /* Change cursor to text input */
+    font-size: 14px;              /* 调整字号为标准大小 */
+    selection-background-color: #0078d7;
+    qproperty-alignment: AlignHCenter;
 }
+
 QLineEdit#accountLineEdit:hover, QLineEdit#passwordLineEdit:hover {
-    border: 1px solid #89CFF0; /* Softer blue border on hover */
-}
-QLineEdit#accountLineEdit:focus, QLineEdit#passwordLineEdit:focus {
     border: 1px solid #89CFF0;
-    box-shadow: 0 0 3px rgba(137, 207, 240, 0.7); /* Softer shadow on focus */
-}
-QLineEdit#accountLineEdit::placeholder, QLineEdit#passwordLineEdit::placeholder {
-    color: #606060; /* Darker placeholder text color */
 }
 
+QLineEdit#accountLineEdit:focus, QLineEdit#passwordLineEdit:focus {
+    border: 1px solid #0078d7;    /* 聚焦时边框变深蓝 */
+}
 
+/* 占位符文本颜色 */
+QLineEdit::placeholder {
+    color: #999999;
+    qproperty-alignment: AlignHCenter;
+}
+
+/* 输入框内部的小按钮（下拉、显示密码） */
 QToolButton#accountDropdownButton, QToolButton#passwordVisibilityButton {
     border: none;
     background: transparent;
-    padding: 4px;
+    padding: 2px;
 }
 QToolButton#accountDropdownButton:hover, QToolButton#passwordVisibilityButton:hover {
-    background-color: transparent;
+    background-color: rgba(0, 0, 0, 0.1);
     border-radius: 4px;
 }
 
+/* 登录按钮样式 - 重点修复显示异常 */
 QPushButton#loginButton {
-  background-color: #0078D7;
-  color: white;
-  font-size: 20px; /* Further increased font size */
-  border: none;
-  padding: 18px 40px; /* Further increased padding for taller and wider button */
-  border-radius: 25px; /* Adjusted for perfectly pill-shaped with new padding */
-  text-align: center;
+    background-color: #0078D7;
+    color: white;
+    font-size: 16px;              /* 修复：原22px太大 */
+    border: 1px solid #005A9E;    /* 修复：添加边框 */
+    padding: 8px 20px;            /* 修复：原25px padding太大导致文字消失 */
+    border-radius: 6px;           /* 修复：设置为6px圆角 */
+    font-weight: bold;
 }
+
 QPushButton#loginButton:hover {
-  background-color: #005A9E;
+    background-color: #1084e3;
 }
+
+QPushButton#loginButton:pressed {
+    background-color: #004377;
+}
+
 QPushButton#loginButton:disabled {
-  background-color: #A0A0A0;
-  color: #C0C0C0;
+    background-color: #E0E0E0;
+    color: #A0A0A0;
+    border: 1px solid #D0D0D0;
+}
+
+/* 更多选项按钮 */
+QPushButton#moreOptionsButton {
+    color: #0078D7;
+    border: none;
+    background: transparent;
+    font-size: 12px;
+}
+QPushButton#moreOptionsButton:hover {
+    text-decoration: underline;
 }

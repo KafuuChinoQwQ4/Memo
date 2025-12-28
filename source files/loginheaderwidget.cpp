@@ -22,9 +22,9 @@ LoginHeaderWidget::LoginHeaderWidget(QWidget *parent)
     m_titleLabel->setStyleSheet("qproperty-alignment: 'AlignCenter';");
 
     QVBoxLayout *mainLayout = new QVBoxLayout(this);
-    mainLayout->addWidget(m_logoLabel, 0, Qt::AlignCenter);
-    mainLayout->addSpacing(15);
     mainLayout->addWidget(m_titleLabel, 0, Qt::AlignCenter);
+
+    mainLayout->addWidget(m_logoLabel, 0, Qt::AlignCenter);
     mainLayout->setContentsMargins(0, 0, 0, 0); // No extra margins for this widget itself
     setLayout(mainLayout);
 }

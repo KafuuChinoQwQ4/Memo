@@ -17,8 +17,8 @@
 #include <cmath>
 #include <QMenu>
 #include <QAction>
-#include <QFile> // Added for stylesheet loading
-#include <QTextStream> // Added for stylesheet loading
+#include <QFile> 
+#include <QTextStream> 
 #include "loginheaderwidget.h"
 #include "topbarwidget.h"
 #include "loginformwidget.h"
@@ -33,32 +33,34 @@ LoginWigets::LoginWigets(QWidget *parent)
       m_backgroundAnimator(new BackgroundAnimator(this))
 {
     setWindowTitle(tr("memoLogin"));
-    setFixedSize(300, 450); // Keep original window size
+    setFixedSize(300, 450); 
     setWindowFlags(Qt::FramelessWindowHint);
     setAttribute(Qt::WA_TranslucentBackground);
 
     connect(m_backgroundAnimator, &BackgroundAnimator::backgroundColorsChanged, this, &LoginWigets::updateBackgroundColors);
     m_backgroundAnimator->startAnimation();
 
-    m_backgroundAnimator->startAnimation();
-
     m_topBarWidget = new TopBarWidget(this);
     connect(m_topBarWidget, &TopBarWidget::closeButtonClicked, this, &QWidget::close);
-    //connect(m_topBarWidget, &TopBarWidget::settingsButtonClicked, this, &LoginWigets::onSettingsClicked); // Assuming a slot will be added for settings
-    m_topBarWidget->setContentsMargins(0, 5, 5, 0); // Apply original topLayout margins to the widget itself
+    m_topBarWidget->setContentsMargins(0, 5, 5, 0); 
 
     m_loginHeaderWidget = new LoginHeaderWidget(this);
     connect(m_backgroundAnimator, &BackgroundAnimator::titleColorChanged, m_loginHeaderWidget, &LoginHeaderWidget::updateTitleColor);
 
-
     // --- Main Layout ---
     QVBoxLayout *mainLayout = new QVBoxLayout();
+    mainLayout->setContentsMargins(0, 0, 0, 0);
+    
+    // 1. 顶部栏
     mainLayout->addWidget(m_topBarWidget, 0, Qt::AlignRight | Qt::AlignTop);
-    mainLayout->addStretch(1);
+    
+    // 2. [修改] 移除之前的 stretch，改为固定间距，让内容靠上 
+    
+    // 3. Logo/Header
     mainLayout->addWidget(m_loginHeaderWidget, 0, Qt::AlignCenter);
-    mainLayout->addSpacing(15); // Move inputs up
+    mainLayout->addSpacing(20); 
 
-    // Center the input fields horizontally
+    // 4. 输入框容器
     QHBoxLayout *inputsContainer = new QHBoxLayout();
     QVBoxLayout *inputsLayout = new QVBoxLayout();
 
@@ -66,46 +68,31 @@ LoginWigets::LoginWigets(QWidget *parent)
     inputsLayout->addWidget(m_loginFormWidget);
     inputsLayout->addSpacing(10);
 
-    // Connect signals from LoginFormWidget to LoginWigets slots/logic
-    // For now, these signals might not be directly used, but they are available for future logic.
-    // connect(m_loginFormWidget, &LoginFormWidget::accountTextChanged, this, &LoginWigets::onAccountTextChanged);
-    // connect(m_loginFormWidget, &LoginFormWidget::passwordTextChanged, this, &LoginWigets::onPasswordTextChanged);
-    // connect(m_loginFormWidget, &LoginFormWidget::passwordVisibilityToggled, this, &LoginWigets::onPasswordVisibilityToggled);
-    // connect(m_loginFormWidget, &LoginFormWidget::accountDropdownClicked, this, &LoginWigets::onAccountDropdownClicked);
-
-    inputsLayout->addSpacing(10); // Space after LoginFormWidget
-
     m_loginControlWidget = new LoginControlWidget(this);
     inputsLayout->addWidget(m_loginControlWidget);
-
+    
     connect(m_loginControlWidget, &LoginControlWidget::agreementToggled, this, &LoginWigets::onAgreementToggled);
-    // Connect other signals from LoginControlWidget to LoginWigets slots if needed.
-    // connect(m_loginControlWidget, &LoginControlWidget::loginButtonClicked, this, &LoginWigets::onLoginClicked);
-    // connect(m_loginControlWidget, &LoginControlWidget::scanCodeClicked, this, &LoginWigets::onScanCodeClicked);
-    // connect(m_loginControlWidget, &LoginControlWidget::moreOptionsClicked, this, &LoginWigets::onMoreOptionsClicked);
 
     inputsLayout->setSpacing(0);
-
     inputsContainer->addLayout(inputsLayout);
-    inputsContainer->setContentsMargins(15, 0, 15, 0); // Adjust margins to prevent clipping
+    inputsContainer->setContentsMargins(15, 0, 15, 0); 
 
     mainLayout->addLayout(inputsContainer);
-    mainLayout->addStretch(1); // Further reduced stretch to move elements upwards
+
+    // 5. [关键] 底部添加弹簧，把上面所有内容往上顶
+    mainLayout->addStretch(1); 
+    
     setLayout(mainLayout);
 
     // --- Load and apply stylesheet ---
-    QFile file(":/styles/loginwidget.qss"); // Assuming the qss is added to qrc
+    QFile file(":/styles/loginwidget.qss"); 
     if (!file.open(QFile::ReadOnly | QFile::Text)) {
-        // Handle error if stylesheet cannot be opened
         qWarning("Could not open stylesheet file!");
     } else {
         QString styleSheet = QTextStream(&file).readAll();
         this->setStyleSheet(styleSheet);
         file.close();
     }
-    // --- End stylesheet loading ---
-
-    setLayout(mainLayout);
 }
 
 void LoginWigets::paintEvent(QPaintEvent *event)
@@ -139,30 +126,14 @@ void LoginWigets::mouseMoveEvent(QMouseEvent *event)
     }
 }
 
-
-
-
-
-
-
 void LoginWigets::onAgreementToggled(bool checked)
-
 {
-
     m_loginControlWidget->setLoginButtonEnabled(checked);
-
 }
 
-
-
 void LoginWigets::updateBackgroundColors(QColor color1, QColor color2)
-
 {
-
     m_currentBgColor1 = color1;
-
     m_currentBgColor2 = color2;
-
-    update(); // Trigger a repaint
-
+    update(); 
 }

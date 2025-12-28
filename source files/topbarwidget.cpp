@@ -27,5 +27,5 @@ TopBarWidget::TopBarWidget(QWidget *parent)
     topLayout->addStretch();
     topLayout->addWidget(m_settingsButton);
     topLayout->addWidget(m_closeButton);
-    topLayout->setContentsMargins(0, 5, 5, 0);
+    topLayout->setContentsMargins(0, 0, 5, 0);
 }
