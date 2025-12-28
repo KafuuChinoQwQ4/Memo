@@ -1,5 +1,0 @@
-The "Memo" text has been moved above the icon, and the icon below the "Memo" text, by modifying `source files/loginheaderwidget.cpp`.
-
-Specifically, the order of `m_titleLabel` and `m_logoLabel` in the `QVBoxLayout` within the `LoginHeaderWidget` constructor was reversed.
-
-Due to limitations in the available tools, I am unable to execute build commands (like `cmake --build` or `ninja`) to compile the project and verify the change, nor can I use `git` commands.
