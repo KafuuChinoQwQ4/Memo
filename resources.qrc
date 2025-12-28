@@ -1,0 +1,11 @@
+<RCC>
+    <qresource prefix="/">
+        <file>images/关闭.svg</file>
+        <file>images/设置.svg</file>
+        <file>images/下拉.svg</file>
+        <file>images/显示.svg</file>
+        <file>images/隐藏.svg</file>
+        <file>images/transparent_bg.png</file>
+        <file>styles/loginwidget.qss</file>
+    </qresource>
+</RCC>
