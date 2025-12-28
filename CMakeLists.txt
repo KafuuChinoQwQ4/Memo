@@ -22,7 +22,6 @@ find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets)
 
 set(PROJECT_CPP_SOURCES
     "source files/main.cpp"
-    "source files/mainwindow.cpp"
     "source files/loginwigets.cpp"
     "source files/backgroundanimator.cpp"
     "source files/loginheaderwidget.cpp"
@@ -32,7 +31,6 @@ set(PROJECT_CPP_SOURCES
 )
 
 set(PROJECT_HEADER_SOURCES
-    "header files/mainwindow.h"
     "header files/loginwigets.h"
     "header files/backgroundanimator.h"
     "header files/loginheaderwidget.h"
