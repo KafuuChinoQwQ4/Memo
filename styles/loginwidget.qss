@@ -1,0 +1,31 @@
+QPushButton#closeButton, QPushButton#settingsButton {
+    border: none;
+    background-color: transparent;
+}
+QPushButton#closeButton:hover, QPushButton#settingsButton:hover {
+    background-color: rgba(0, 0, 0, 60);
+    border-radius: 5px;
+}
+
+QLineEdit#accountLineEdit, QLineEdit#passwordLineEdit {
+    background-color: white;
+    border: 1px solid #D3D3D3;
+    border-radius: 15px; /* Increased for rounder corners */
+    padding: 12px;      /* Increased for larger input area */
+    color: black;
+    font-size: 16px;    /* Increased for larger text */
+    qproperty-alignment: AlignCenter;
+}
+QLineEdit#accountLineEdit:focus, QLineEdit#passwordLineEdit:focus {
+    border: 1px solid #0078D7;
+}
+
+QToolButton#accountDropdownButton, QToolButton#passwordVisibilityButton {
+    border: none;
+    background: transparent;
+    padding: 4px;
+}
+QToolButton#accountDropdownButton:hover, QToolButton#passwordVisibilityButton:hover {
+    background-color: #E0E0E0;
+    border-radius: 4px;
+}
