@@ -49,21 +49,21 @@ QToolButton#accountDropdownButton:hover, QToolButton#passwordVisibilityButton:ho
 
 /* 登录按钮样式 - 重点修复显示异常 */
 QPushButton#loginButton {
-    background-color: #0078D7;
+    background-color: #5cb0f5;
     color: white;
     font-size: 16px;              /* 修复：原22px太大 */
-    border: 1px solid #005A9E;    /* 修复：添加边框 */
+    border: 1px solid #5bb5fa;    /* 修复：添加边框 */
     padding: 8px 20px;            /* 修复：原25px padding太大导致文字消失 */
     border-radius: 6px;           /* 修复：设置为6px圆角 */
     font-weight: bold;
 }
 
 QPushButton#loginButton:hover {
-    background-color: #1084e3;
+    background-color: #45a7f8;
 }
 
 QPushButton#loginButton:pressed {
-    background-color: #004377;
+    background-color: #30a5ff;
 }
 
 QPushButton#loginButton:disabled {
@@ -81,4 +81,8 @@ QPushButton#moreOptionsButton {
 }
 QPushButton#moreOptionsButton:hover {
     text-decoration: underline;
+}
+
+QCheckBox {
+    padding-right: 5px; /* Add some padding to the right */
 }
