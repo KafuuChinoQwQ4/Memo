@@ -3,22 +3,30 @@ QPushButton#closeButton, QPushButton#settingsButton {
     background-color: transparent;
 }
 QPushButton#closeButton:hover, QPushButton#settingsButton:hover {
-    background-color: rgba(0, 0, 0, 60);
-    border-radius: 5px;
+    background-color: rgba(128, 128, 128, 0.3); /* Lighter gray background on hover */
+    border-radius: 10px;
 }
 
 QLineEdit#accountLineEdit, QLineEdit#passwordLineEdit {
     background-color: white;
     border: 1px solid #D3D3D3;
-    border-radius: 15px; /* Increased for rounder corners */
-    padding: 12px;      /* Increased for larger input area */
+    border-radius: 20px; /* Adjusted for new padding to be pill-shaped */
+    padding: 12px 50px 12px 20px; /* Enlarged input fields */
     color: black;
-    font-size: 16px;    /* Increased for larger text */
-    qproperty-alignment: AlignCenter;
+    font-size: 16px; /* Enlarged font */
+    qproperty-cursor: ibeam; /* Change cursor to text input */
+}
+QLineEdit#accountLineEdit:hover, QLineEdit#passwordLineEdit:hover {
+    border: 1px solid #89CFF0; /* Softer blue border on hover */
 }
 QLineEdit#accountLineEdit:focus, QLineEdit#passwordLineEdit:focus {
-    border: 1px solid #0078D7;
+    border: 1px solid #89CFF0;
+    box-shadow: 0 0 3px rgba(137, 207, 240, 0.7); /* Softer shadow on focus */
 }
+QLineEdit#accountLineEdit::placeholder, QLineEdit#passwordLineEdit::placeholder {
+    color: #606060; /* Darker placeholder text color */
+}
+
 
 QToolButton#accountDropdownButton, QToolButton#passwordVisibilityButton {
     border: none;
@@ -26,6 +34,23 @@ QToolButton#accountDropdownButton, QToolButton#passwordVisibilityButton {
     padding: 4px;
 }
 QToolButton#accountDropdownButton:hover, QToolButton#passwordVisibilityButton:hover {
-    background-color: #E0E0E0;
+    background-color: transparent;
     border-radius: 4px;
+}
+
+QPushButton#loginButton {
+  background-color: #0078D7;
+  color: white;
+  font-size: 20px; /* Further increased font size */
+  border: none;
+  padding: 18px 40px; /* Further increased padding for taller and wider button */
+  border-radius: 25px; /* Adjusted for perfectly pill-shaped with new padding */
+  text-align: center;
+}
+QPushButton#loginButton:hover {
+  background-color: #005A9E;
+}
+QPushButton#loginButton:disabled {
+  background-color: #A0A0A0;
+  color: #C0C0C0;
 }
