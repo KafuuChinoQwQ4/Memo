@@ -25,7 +25,8 @@
 // LoginWigets 是登录窗口的主控件，继承自 QWidget
 LoginWigets::LoginWigets(QWidget *parent)
     : QWidget{parent},
-      m_backgroundAnimator(new BackgroundAnimator(this)) // 初始化背景动画器
+      m_backgroundAnimator(new BackgroundAnimator(this)), // 初始化背景动画器
+      m_lastPageBeforeSettings(nullptr)
 {
     setWindowTitle(tr("memoLogin")); // 设置窗口标题
     setFixedSize(300, 450); // 设置固定的窗口大小
@@ -69,17 +70,16 @@ LoginWigets::LoginWigets(QWidget *parent)
 
     // --- 创建注册页面 ---
     m_registerPage = new QWidget(this);
-    RegisterFormWidget *registerFormWidget = new RegisterFormWidget(m_registerPage);
-    QPushButton *backButton = new QPushButton(tr("返回登录"), m_registerPage);
-    backButton->setObjectName("backButton");
+    RegisterFormWidget *registerFormWidget = new RegisterFormWidget(this);
     QVBoxLayout *registerPageLayout = new QVBoxLayout(m_registerPage);
     registerPageLayout->setContentsMargins(15, 0, 15, 15);
-    registerPageLayout->setSpacing(0);
     registerPageLayout->addWidget(registerFormWidget);
-    registerPageLayout->addStretch();
-    registerPageLayout->addWidget(backButton);
 
-    connect(backButton, &QPushButton::clicked, this, &LoginWigets::onSettingsRejected); // Use onSettingsRejected to go back
+    connect(registerFormWidget, &RegisterFormWidget::backButtonClicked, this, [this](){
+        m_stackedWidget->setCurrentWidget(m_loginPage);
+        m_loginHeaderWidget->setVisible(true);
+    });
+    connect(registerFormWidget, &RegisterFormWidget::registerButtonClicked, this, &LoginWigets::onRegisterAccount);
 
 
     // --- 创建设置页面 ---
@@ -120,12 +120,21 @@ LoginWigets::LoginWigets(QWidget *parent)
 
 void LoginWigets::onSettingsButtonClicked()
 {
-    if (m_stackedWidget->currentWidget() == m_loginPage) {
+    if (m_stackedWidget->currentWidget() != m_settingsPage) {
+        m_lastPageBeforeSettings = m_stackedWidget->currentWidget();
         m_stackedWidget->setCurrentWidget(m_settingsPage);
         m_loginHeaderWidget->setVisible(false);
     } else {
-        m_stackedWidget->setCurrentWidget(m_loginPage);
-        m_loginHeaderWidget->setVisible(true);
+        if (m_lastPageBeforeSettings) {
+            m_stackedWidget->setCurrentWidget(m_lastPageBeforeSettings);
+        } else {
+            m_stackedWidget->setCurrentWidget(m_loginPage);
+        }
+        if (m_stackedWidget->currentWidget() == m_loginPage) {
+            m_loginHeaderWidget->setVisible(true);
+        } else {
+            m_loginHeaderWidget->setVisible(false);
+        }
     }
 }
 
@@ -182,18 +191,39 @@ void LoginWigets::onSettingsAccepted()
 {
     // TODO: 在这里添加保存设置的逻辑
 
-    m_stackedWidget->setCurrentWidget(m_loginPage);
-    m_loginHeaderWidget->setVisible(true);
+    if (m_lastPageBeforeSettings) {
+        m_stackedWidget->setCurrentWidget(m_lastPageBeforeSettings);
+    } else {
+        m_stackedWidget->setCurrentWidget(m_loginPage);
+    }
+    if (m_stackedWidget->currentWidget() == m_loginPage) {
+        m_loginHeaderWidget->setVisible(true);
+    } else {
+        m_loginHeaderWidget->setVisible(false);
+    }
 }
 
 void LoginWigets::onSettingsRejected()
 {
-    m_stackedWidget->setCurrentWidget(m_loginPage);
-    m_loginHeaderWidget->setVisible(true);
+    if (m_lastPageBeforeSettings) {
+        m_stackedWidget->setCurrentWidget(m_lastPageBeforeSettings);
+    } else {
+        m_stackedWidget->setCurrentWidget(m_loginPage);
+    }
+    if (m_stackedWidget->currentWidget() == m_loginPage) {
+        m_loginHeaderWidget->setVisible(true);
+    } else {
+        m_loginHeaderWidget->setVisible(false);
+    }
 }
 
 void LoginWigets::onGoToRegister()
 {
     m_stackedWidget->setCurrentWidget(m_registerPage);
     m_loginHeaderWidget->setVisible(false);
+}
+
+void LoginWigets::onRegisterAccount()
+{
+    // TODO: Implement registration logic
 }

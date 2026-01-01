@@ -35,6 +35,7 @@ private slots:
     void onSettingsAccepted();
     void onSettingsRejected();
     void onGoToRegister();
+    void onRegisterAccount();
 
 private:
     QPoint m_dragPosition;
@@ -53,6 +54,7 @@ private:
     // Style/Animation Data
     QColor m_currentBgColor1;
     QColor m_currentBgColor2;
+    QWidget *m_lastPageBeforeSettings;
 };
 
 #endif // LOGINWIGETS_H

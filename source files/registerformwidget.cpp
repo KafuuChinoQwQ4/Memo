@@ -24,6 +24,23 @@ RegisterFormWidget::RegisterFormWidget(QWidget *parent)
     m_confirmPasswordLineEdit->setEchoMode(QLineEdit::Password);
     m_confirmPasswordLineEdit->setObjectName("confirmPasswordLineEdit");
 
+    m_emailLineEdit = new QLineEdit(this);
+    m_emailLineEdit->setPlaceholderText(tr("请输入邮箱"));
+    m_emailLineEdit->setObjectName("emailLineEdit");
+
+    // --- Verification Code ---
+    QHBoxLayout* codeLayout = new QHBoxLayout();
+    m_verificationCodeLineEdit = new QLineEdit(this);
+    m_verificationCodeLineEdit->setPlaceholderText(tr("验证码"));
+    m_verificationCodeLineEdit->setObjectName("verificationCodeLineEdit");
+    m_sendCodeButton = new QPushButton(tr("发送验证码"), this);
+    m_sendCodeButton->setObjectName("sendCodeButton");
+    codeLayout->addWidget(m_verificationCodeLineEdit);
+    codeLayout->addWidget(m_sendCodeButton);
+    QWidget *codeWidget = new QWidget(this);
+    codeWidget->setLayout(codeLayout);
+
+
     // --- Input Validation ---
     QRegularExpression accountRegex("^[a-zA-Z0-9]+$");
     auto *accountValidator = new QRegularExpressionValidator(accountRegex, this);
@@ -33,6 +50,12 @@ RegisterFormWidget::RegisterFormWidget(QWidget *parent)
     auto *passwordValidator = new QRegularExpressionValidator(passwordRegex, this);
     m_passwordLineEdit->setValidator(passwordValidator);
     m_confirmPasswordLineEdit->setValidator(passwordValidator);
+
+    // --- Buttons ---
+    m_registerButton = new QPushButton(tr("注册"), this);
+    m_registerButton->setObjectName("registerButton");
+    m_backButton = new QPushButton(tr("返回登录"), this);
+    m_backButton->setObjectName("backButton");
 
     // --- Password Visibility Button ---
     m_passwordVisibilityButton = new QToolButton(m_passwordLineEdit);
@@ -45,6 +68,12 @@ RegisterFormWidget::RegisterFormWidget(QWidget *parent)
     connect(m_accountLineEdit, &QLineEdit::textChanged, this, &RegisterFormWidget::accountTextChanged);
     connect(m_passwordLineEdit, &QLineEdit::textChanged, this, &RegisterFormWidget::passwordTextChanged);
     connect(m_confirmPasswordLineEdit, &QLineEdit::textChanged, this, &RegisterFormWidget::confirmPasswordTextChanged);
+    connect(m_emailLineEdit, &QLineEdit::textChanged, this, &RegisterFormWidget::emailTextChanged);
+    connect(m_verificationCodeLineEdit, &QLineEdit::textChanged, this, &RegisterFormWidget::verificationCodeChanged);
+    connect(m_sendCodeButton, &QPushButton::clicked, this, &RegisterFormWidget::sendCodeClicked);
+    connect(m_registerButton, &QPushButton::clicked, this, &RegisterFormWidget::registerButtonClicked);
+    connect(m_backButton, &QPushButton::clicked, this, &RegisterFormWidget::backButtonClicked);
+
 
     // --- Layouts ---
     QHBoxLayout* passwordInnerLayout = new QHBoxLayout(m_passwordLineEdit);
@@ -59,6 +88,13 @@ RegisterFormWidget::RegisterFormWidget(QWidget *parent)
     mainLayout->addWidget(m_passwordLineEdit);
     mainLayout->addSpacing(15);
     mainLayout->addWidget(m_confirmPasswordLineEdit);
+    mainLayout->addSpacing(15);
+    mainLayout->addWidget(m_emailLineEdit);
+    mainLayout->addSpacing(15);
+    mainLayout->addWidget(codeWidget);
+    mainLayout->addStretch();
+    mainLayout->addWidget(m_registerButton);
+    mainLayout->addWidget(m_backButton);
     mainLayout->setContentsMargins(0, 0, 0, 0);
 }
 
@@ -75,6 +111,16 @@ QString RegisterFormWidget::passwordText() const
 QString RegisterFormWidget::confirmPasswordText() const
 {
     return m_confirmPasswordLineEdit->text();
+}
+
+QString RegisterFormWidget::emailText() const
+{
+    return m_emailLineEdit->text();
+}
+
+QString RegisterFormWidget::verificationCodeText() const
+{
+    return m_verificationCodeLineEdit->text();
 }
 
 void RegisterFormWidget::onPasswordVisibilityButtonToggled()

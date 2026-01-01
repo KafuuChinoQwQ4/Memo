@@ -11,7 +11,7 @@ QPushButton#closeButton:hover, QPushButton#settingsButton:hover {
 }
 
 /* 账号和密码输入框样式 */
-QLineEdit#accountLineEdit, QLineEdit#passwordLineEdit, QLineEdit#confirmPasswordLineEdit {
+QLineEdit#accountLineEdit, QLineEdit#passwordLineEdit, QLineEdit#confirmPasswordLineEdit, QLineEdit#emailLineEdit, QLineEdit#verificationCodeLineEdit {
     background-color: white;
     border: none;                 /* 去掉边框 */
     border-radius: 6px;           /* 改为6px，呈现“四个圆角”的矩形效果 */
@@ -22,11 +22,11 @@ QLineEdit#accountLineEdit, QLineEdit#passwordLineEdit, QLineEdit#confirmPassword
     qproperty-alignment: AlignHCenter;
 }
 
-QLineEdit#accountLineEdit:hover, QLineEdit#passwordLineEdit:hover, QLineEdit#confirmPasswordLineEdit:hover {
+QLineEdit#accountLineEdit:hover, QLineEdit#passwordLineEdit:hover, QLineEdit#confirmPasswordLineEdit:hover, QLineEdit#emailLineEdit:hover, QLineEdit#verificationCodeLineEdit:hover {
     border: none;
 }
 
-QLineEdit#accountLineEdit:focus, QLineEdit#passwordLineEdit:focus, QLineEdit#confirmPasswordLineEdit:focus {
+QLineEdit#accountLineEdit:focus, QLineEdit#passwordLineEdit:focus, QLineEdit#confirmPasswordLineEdit:focus, QLineEdit#emailLineEdit:focus, QLineEdit#verificationCodeLineEdit:focus {
     border: none;
 }
 
@@ -48,7 +48,7 @@ QToolButton#accountDropdownButton:hover, QToolButton#passwordVisibilityButton:ho
 }
 
 /* 登录按钮样式 - 重点修复显示异常 */
-QPushButton#loginButton {
+QPushButton#loginButton, QPushButton#registerButton {
     background-color: #5cb0f5;
     color: white;
     font-size: 16px;              /* 修复：原22px太大 */
@@ -58,11 +58,11 @@ QPushButton#loginButton {
     font-weight: bold;
 }
 
-QPushButton#loginButton:hover {
+QPushButton#loginButton:hover, QPushButton#registerButton:hover {
     background-color: #45a7f8;
 }
 
-QPushButton#loginButton:pressed {
+QPushButton#loginButton:pressed, QPushButton#registerButton:pressed {
     background-color: #30a5ff;
 }
 
@@ -100,6 +100,22 @@ QCheckBox {
 
 }
 
+QPushButton#sendCodeButton {
+    background-color: transparent;
+    color: black;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    padding: 4px 10px;
+    border-radius: 6px;
+}
+
+QPushButton#sendCodeButton:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+}
+
+QPushButton#sendCodeButton:pressed {
+    background-color: rgba(0, 0, 0, 0.1);
+}
 
 
 /* --- Settings Page --- */
