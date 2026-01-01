@@ -4,7 +4,7 @@
 #include <QObject>
 #include <QTimer>
 #include <QColor>
-#include <cmath> // For M_PI, sin
+#include <cmath>
 
 #ifndef M_PI
 #define M_PI 3.14159265358979323846
@@ -22,7 +22,7 @@ public:
 
 signals:
     void backgroundColorsChanged(QColor color1, QColor color2);
-    void titleColorChanged(QColor color); // Signal for the title color
+    void titleColorChanged(QColor color);
 
 private slots:
     void updateAnimation();

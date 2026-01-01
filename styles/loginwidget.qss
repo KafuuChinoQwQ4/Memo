@@ -11,9 +11,9 @@ QPushButton#closeButton:hover, QPushButton#settingsButton:hover {
 }
 
 /* 账号和密码输入框样式 */
-QLineEdit#accountLineEdit, QLineEdit#passwordLineEdit {
+QLineEdit#accountLineEdit, QLineEdit#passwordLineEdit, QLineEdit#confirmPasswordLineEdit {
     background-color: white;
-    border: 1px solid #ccc;       /* 必须有边框 */
+    border: none;                 /* 去掉边框 */
     border-radius: 6px;           /* 改为6px，呈现“四个圆角”的矩形效果 */
     padding: 8px 40px 8px 40px;   /* 上下8px，右侧40px(避让图标)，左侧40px */
     color: black;
@@ -22,12 +22,12 @@ QLineEdit#accountLineEdit, QLineEdit#passwordLineEdit {
     qproperty-alignment: AlignHCenter;
 }
 
-QLineEdit#accountLineEdit:hover, QLineEdit#passwordLineEdit:hover {
-    border: 1px solid #89CFF0;
+QLineEdit#accountLineEdit:hover, QLineEdit#passwordLineEdit:hover, QLineEdit#confirmPasswordLineEdit:hover {
+    border: none;
 }
 
-QLineEdit#accountLineEdit:focus, QLineEdit#passwordLineEdit:focus {
-    border: 1px solid #0078d7;    /* 聚焦时边框变深蓝 */
+QLineEdit#accountLineEdit:focus, QLineEdit#passwordLineEdit:focus, QLineEdit#confirmPasswordLineEdit:focus {
+    border: none;
 }
 
 /* 占位符文本颜色 */
@@ -83,6 +83,162 @@ QPushButton#moreOptionsButton:hover {
     text-decoration: underline;
 }
 
+/* 返回登录按钮 */
+QPushButton#backButton {
+    color: #0078D7;
+    border: none;
+    background: transparent;
+    font-size: 12px;
+}
+QPushButton#backButton:hover {
+    text-decoration: underline;
+}
+
 QCheckBox {
+
     padding-right: 5px; /* Add some padding to the right */
+
+}
+
+
+
+/* --- Settings Page --- */
+
+QLabel#settingsTitle {
+
+    font-size: 18px;
+
+    font-weight: bold;
+
+    color: #333;
+
+}
+
+
+
+QComboBox#proxyComboBox {
+
+    background-color: white;
+
+    border: 1px solid #ccc;
+
+    border-radius: 4px;
+
+    padding: 4px 8px;
+
+    color: black;
+
+    font-size: 12px;
+
+}
+
+
+
+QComboBox#proxyComboBox:hover {
+
+    border: 1px solid #89CFF0;
+
+}
+
+
+
+QComboBox#proxyComboBox::drop-down {
+
+    border: none;
+
+    width: 20px;
+
+}
+
+
+
+QComboBox#proxyComboBox::down-arrow {
+
+    image: url(:/images/下拉.svg);
+
+    width: 12px;
+
+    height: 12px;
+
+}
+
+
+
+QComboBox#proxyComboBox QAbstractItemView {
+
+    background-color: white;
+
+    border: 1px solid #ccc;
+
+    selection-background-color: #0078d7;
+
+}
+
+
+
+QPushButton#okButton {
+
+    background-color: #5cb0f5;
+
+    color: white;
+
+    font-size: 14px;
+
+    border: 1px solid #5bb5fa;
+
+    padding: 6px 20px;
+
+    border-radius: 6px;
+
+    font-weight: bold;
+
+}
+
+
+
+QPushButton#okButton:hover {
+
+    background-color: #45a7f8;
+}
+
+
+
+QPushButton#okButton:pressed {
+
+    background-color: #30a5ff;
+
+}
+
+
+
+QPushButton#cancelButton {
+
+    background-color: transparent;
+
+    color: black;
+
+    font-size: 14px;
+
+    border: 1px solid #ccc;
+
+    padding: 6px 20px;
+
+    border-radius: 6px;
+
+}
+
+
+
+QPushButton#cancelButton:hover {
+
+    background-color: rgba(0, 0, 0, 0.05);
+
+}
+
+
+
+QPushButton#cancelButton:pressed {
+
+    background-color: rgba(0, 0, 0, 0.1);
+
 }

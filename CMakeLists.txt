@@ -28,6 +28,8 @@ set(PROJECT_CPP_SOURCES
     "source files/topbarwidget.cpp"
     "source files/loginformwidget.cpp"
     "source files/logincontrolwidget.cpp"
+    "source files/settingswidget.cpp"
+    "source files/registerformwidget.cpp"
 )
 
 set(PROJECT_HEADER_SOURCES
@@ -37,6 +39,8 @@ set(PROJECT_HEADER_SOURCES
     "header files/topbarwidget.h"
     "header files/loginformwidget.h"
     "header files/logincontrolwidget.h"
+    "header files/settingswidget.h"
+    "header files/registerformwidget.h"
 )
 
 set(PROJECT_RESOURCES

@@ -20,6 +20,7 @@ signals:
     void agreementToggled(bool checked);
     void scanCodeClicked();
     void moreOptionsClicked();
+    void registerAccountClicked();
 
 private slots:
     void onAgreementCheckBoxStateChanged(int state);
